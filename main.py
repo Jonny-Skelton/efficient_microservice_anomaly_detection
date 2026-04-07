@@ -38,14 +38,20 @@ if __name__ == '__main__':
                         batch_size=args['batch_size'],
                         shuffle=False, pin_memory=False, drop_last=True)
 
-    # declear model and train
+    # declare model and train
     import src.model as model
-    models = model.MyModel(processed.graph, **args)
-    sys = train.MY(models, **args)  
+    import src.MESTGAD as e_model
+
+    if args['main_model'] in ('mestgad', 'mstgad_mamba', 'mstgad_ad'):
+        active_model = e_model.MESTGADModel(processed.graph, **args)
+    else:
+        active_model = model.MyModel(processed.graph, **args)
+
+    trainer = train.MY(active_model, **args)
 
     #Training
     if not args['evaluate']:
-        sys.fit(train_loader=train_dl, test_loader=test_dl)
+        trainer.fit(train_loader=train_dl, test_loader=test_dl)
 
 
     # Evaluating
@@ -54,8 +60,8 @@ if __name__ == '__main__':
         file.writelines(f"\n {args['main_model']}-{args['hash_id']} --weight_decay:{args['weight_decay']}   --learning_change:{args['learning_change']} \n")
         for statue in ['loss', 'f1']:
             logging.info(f'calculate label with {statue}...')
-            sys.load_model(args['model_path'], name=statue)
-            info = sys.evaluate(test_dl, isFinall=True)
+            trainer.load_model(args['model_path'], name=statue)
+            info = trainer.evaluate(test_dl, isFinall=True)
             file.writelines(statue + '   ' + info + '\n')
     logging.info("^^^^^^ Current Model: ----" + args['main_model'] + "-" * 4 + args['hash_id'] + " ^^^^^")
 

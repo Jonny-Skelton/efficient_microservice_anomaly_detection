@@ -75,11 +75,48 @@ parser.add_argument("--dataset_path", default="./data/MSDS-save",
 parser.add_argument("--result_dir", default="./result",
                     type=str, help='the path of result and log')
 
-parser.add_argument("--main_model", default='MSTGAD', type=str,
-                    help='switch the model that will run')
-parser.add_argument("--evaluate", default=False, 
+parser.add_argument("--main_model", "--config", default='mstgad', type=str,
+                    dest='main_model',
+                    choices=['mstgad', 'mstgad_mamba', 'mstgad_ad', 'mestgad'],
+                    help='model config to run')
+parser.add_argument("--evaluate", default=False,
                     type=lambda x: x.lower() == "true", help='Evaluate the exist model')
 parser.add_argument("--model_path", default=None,
-                    type=str, help=' the path of exist model')
+                    type=str, help='the path of existing model checkpoint')
+
+# Sbatch-friendly aliases
+parser.add_argument("--seed", default=None, type=int, dest='seed_override',
+                    help='random seed (overrides --random_seed)')
+parser.add_argument("--output-dir", default=None, type=str, dest='output_dir_override',
+                    help='output directory (overrides --result_dir)')
+parser.add_argument("--dataset", default=None, type=str, dest='dataset',
+                    choices=['msds', 'aiops'],
+                    help='dataset shorthand (sets data_path and dataset_path)')
+
+# MESTGAD / Mamba hyperparameters
+parser.add_argument("--lambda-ad", "--lambda_ad", default=0.1, type=float, dest='lambda_ad',
+                    help='association discrepancy loss weight (MESTGAD only)')
+parser.add_argument("--d-state", default=16, type=int, dest='d_state',
+                    help='Mamba SSM hidden state dimension')
+parser.add_argument("--d-conv", default=4, type=int, dest='d_conv',
+                    help='Mamba local conv kernel width')
+parser.add_argument("--expand", default=2, type=int,
+                    help='Mamba expansion factor')
 
 args = vars(parser.parse_args())
+
+# Apply seed override
+if args['seed_override'] is not None:
+    args['random_seed'] = args['seed_override']
+
+# Apply output-dir override
+if args['output_dir_override'] is not None:
+    args['result_dir'] = args['output_dir_override']
+
+# Apply dataset shorthand
+if args['dataset'] == 'msds':
+    args['data_path'] = './data/MSDS-pre'
+    args['dataset_path'] = './data/MSDS-save'
+elif args['dataset'] == 'aiops':
+    args['data_path'] = './data/AIOps-pre'
+    args['dataset_path'] = './data/AIOps-save'

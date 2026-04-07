@@ -118,11 +118,17 @@ class MY(Base):
             self.model.train()
             epoch_cls_loss, epoch_rec_loss, epoch_loss = [], [], []
             epoch_time_start = time.time()
+            is_mestgad = hasattr(self.model, 'lambda_ad')
             with tqdm(train_loader) as tbar:
                 for batch_input in tbar:
                     batch_input = self.input2device(batch_input, self.use_gpu)
                     optimizer.zero_grad()
-                    raw_loss, cls_result, cls_label = self.model(batch_input)
+
+                    if is_mestgad:
+                        raw_loss, cls_result, cls_label, ad_loss = self.model(batch_input)
+                    else:
+                        raw_loss, cls_result, cls_label = self.model(batch_input)
+                        ad_loss = torch.tensor(0.0).cuda()
 
                     rec_loss = sum(raw_loss)
                     if cls_result.shape[0] == 0:
@@ -130,7 +136,8 @@ class MY(Base):
                     else:
                         cls_loss = losser(cls_result, cls_label)
 
-                    loss = (1 - para) * cls_loss + para * rec_loss
+                    loss = (1 - para) * cls_loss + para * rec_loss + self.model.lambda_ad * ad_loss if is_mestgad \
+                        else (1 - para) * cls_loss + para * rec_loss
 
                     if torch.isnan(loss):
                         isWrong = True
@@ -191,10 +198,14 @@ class MY(Base):
     def evaluate(self, test_loader, isFinall=False):
         self.model.eval()
         with torch.no_grad():
+            is_mestgad = hasattr(self.model, 'lambda_ad')
             predict_list, label_list = [], []
             for batch_input in tqdm(test_loader):
-                    batch_input = self.input2device(batch_input,self.use_gpu)
-                    raw_result, _ = self.model(batch_input, evaluate=True)
+                    batch_input = self.input2device(batch_input, self.use_gpu)
+                    if is_mestgad:
+                        raw_result, _, _ad = self.model(batch_input, evaluate=True)
+                    else:
+                        raw_result, _ = self.model(batch_input, evaluate=True)
 
                     predict_list.append(raw_result)
                     label_list.append(batch_input['groundtruth_real'])
