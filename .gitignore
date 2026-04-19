@@ -1,0 +1,5 @@
+results/*
+data/MSDS/*
+data/MSDS-save/*
+data/MSDS-pre/*
+*.sbatch

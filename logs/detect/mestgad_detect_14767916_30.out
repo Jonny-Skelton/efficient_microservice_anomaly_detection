@@ -1,0 +1,24 @@
+which python: /home/helab/jonnyskel/.conda/envs/mestgad/bin/python
+Python 3.8.20
+torch: 1.12.0+cu113 cuda available: True
+====================================================
+Task 30: config=mestgad dataset=msds seed=0
+Node: c1707.swan.hcc.unl.edu  GPU: 0
+Started: Thu Apr  9 16:15:59 CDT 2026
+====================================================
+[31mPlease check your arguments if you have upgraded adabelief-pytorch from version 0.0.5.
+[31mModifications to default arguments:
+[31m                           eps  weight_decouple    rectify
+-----------------------  -----  -----------------  ---------
+adabelief-pytorch=0.0.5  1e-08  False              False
+>=0.1.0 (Current 0.2.0)  1e-16  True               True
+[34mSGD better than Adam (e.g. CNN for Image Classification)    Adam better than SGD (e.g. Transformer, GAN)
+----------------------------------------------------------  ----------------------------------------------
+Recommended eps = 1e-8                                      Recommended eps = 1e-16
+[34mFor a complete table of recommended hyperparameters, see
+[34mhttps://github.com/juntang-zhuang/Adabelief-Optimizer
+[32mYou can disable the log message by setting "print_change_log = False", though it is recommended to keep as a reminder.
+[0m
+Weight decoupling enabled in AdaBelief
+Rectification enabled in AdaBelief
+Finished: Thu Apr  9 19:42:01 CDT 2026
