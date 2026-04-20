@@ -1,0 +1,114 @@
+[
+  {
+    "module": "tam",
+    "window": 10,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 20,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 40,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 80,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 160,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 320,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 640,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "tam",
+    "window": 1280,
+    "status": "error",
+    "error": "__init__() got an unexpected keyword argument 'num_heads'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 48, in measure_one\n    module = Module(feature_dim, num_heads=4).to(device)\nTypeError: __init__() got an unexpected keyword argument 'num_heads'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 10,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 20,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 40,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 80,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 160,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 320,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 640,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  },
+  {
+    "module": "mamba",
+    "window": 1280,
+    "status": "error",
+    "error": "forward() missing 2 required positional arguments: 'x_trace' and 'x_log'",
+    "traceback": "Traceback (most recent call last):\n  File \"profile_temporal.py\", line 100, in run_worker\n    result = measure_one(args.module, args.window, args.num_services,\n  File \"profile_temporal.py\", line 65, in measure_one\n    out = module(x)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad/lib/python3.8/site-packages/torch/nn/modules/module.py\", line 1130, in _call_impl\n    return forward_call(*input, **kwargs)\nTypeError: forward() missing 2 required positional arguments: 'x_trace' and 'x_log'\n"
+  }
+]

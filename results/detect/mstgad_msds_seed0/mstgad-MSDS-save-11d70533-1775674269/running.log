@@ -1,0 +1,29 @@
+2026-04-08 13:51:09,557 P494093 INFO ---- Model: ----mstgad-11d70533----train : True----evaluate : False
+2026-04-08 13:51:09,584 P494093 INFO LOADing data ...
+2026-04-08 13:51:16,069 P494093 INFO read Graph edge data
+2026-04-08 13:51:16,078 P494093 INFO Tranform data into timewindows
+2026-04-08 13:51:16,080 P494093 INFO deal ...0...trace:0...error see:0...error real:0...1574716333.0
+2026-04-08 13:51:16,346 P494093 INFO deal ...500...trace:444...error see:0...error real:0...1574716833.0
+2026-04-08 13:51:16,609 P494093 INFO deal ...1000...trace:875...error see:6...error real:7...1574717333.0
+2026-04-08 13:51:16,874 P494093 INFO deal ...1500...trace:1332...error see:16...error real:29...1574717833.0
+2026-04-08 13:51:17,137 P494093 INFO deal ...2000...trace:1832...error see:36...error real:69...1574718333.0
+2026-04-08 13:51:17,399 P494093 INFO deal ...2500...trace:2181...error see:36...error real:69...1574718833.0
+2026-04-08 13:51:17,659 P494093 INFO deal ...3000...trace:2561...error see:55...error real:104...1574719333.0
+2026-04-08 13:51:17,919 P494093 INFO deal ...3500...trace:2991...error see:66...error real:126...1574719833.0
+2026-04-08 13:51:18,178 P494093 INFO deal ...4000...trace:3294...error see:82...error real:159...1574720333.0
+2026-04-08 13:51:18,442 P494093 INFO deal ...4500...trace:3716...error see:87...error real:168...1574720833.0
+2026-04-08 13:51:18,704 P494093 INFO deal ...5000...trace:3997...error see:115...error real:224...1574721333.0
+2026-04-08 13:51:18,970 P494093 INFO deal ...5500...trace:4376...error see:115...error real:224...1574721833.0
+2026-04-08 13:51:19,234 P494093 INFO deal ...6000...trace:4627...error see:137...error real:267...1574722333.0
+2026-04-08 13:51:19,494 P494093 INFO deal ...6500...trace:5012...error see:147...error real:286...1574722833.0
+2026-04-08 13:51:19,755 P494093 INFO deal ...7000...trace:5442...error see:169...error real:333...1574723333.0
+2026-04-08 13:51:20,018 P494093 INFO deal ...7500...trace:5844...error see:197...error real:386...1574723833.0
+2026-04-08 13:51:20,278 P494093 INFO deal ...8000...trace:6156...error see:205...error real:404...1574724333.0
+2026-04-08 13:51:20,537 P494093 INFO deal ...8500...trace:6644...error see:222...error real:440...1574724833.0
+2026-04-08 13:51:20,795 P494093 INFO deal ...9000...trace:7113...error see:227...error real:449...1574725333.0
+2026-04-08 13:51:21,055 P494093 INFO deal ...9500...trace:7430...error see:252...error real:497...1574725833.0
+2026-04-08 13:51:21,318 P494093 INFO deal ...10000...trace:7816...error see:252...error real:497...1574726333.0
+2026-04-08 13:51:21,576 P494093 INFO deal ...10500...trace:8262...error see:261...error real:515...1574726833.0
+2026-04-08 13:51:21,839 P494093 INFO deal ...11000...trace:8762...error see:266...error real:525...1574727333.0
+2026-04-08 13:51:21,917 P494093 INFO deal ...11152...error see:266...error real:525...
+2026-04-08 13:51:21,918 P494093 INFO save Tranform data

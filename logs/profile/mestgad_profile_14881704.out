@@ -1,0 +1,269 @@
+====================================================
+Complexity profiling
+Node: c1707.swan.hcc.unl.edu  GPU: 0,1,2,3
+Started: Sun Apr 19 09:14:52 CDT 2026
+====================================================
+Sun Apr 19 09:14:52 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.119.02             Driver Version: 580.119.02     CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA L40S                    On  |   00000000:59:00.0 Off |                    0 |
+| N/A   29C    P8             31W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA L40S                    On  |   00000000:6C:00.0 Off |                    0 |
+| N/A   28C    P8             32W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   2  NVIDIA L40S                    On  |   00000000:D8:00.0 Off |                    0 |
+| N/A   29C    P8             33W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+|   3  NVIDIA L40S                    On  |   00000000:EA:00.0 Off |                    0 |
+| N/A   28C    P8             32W /  350W |       0MiB /  46068MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+----------------------------------------------------
+
+=== tam W=10 ===
+{
+  "module": "tam",
+  "window": 10,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.016935505233705045,
+  "time_median_s": 0.017680801451206207,
+  "time_min_s": 0.011700132861733437,
+  "time_max_s": 0.01788881979882717,
+  "peak_mem_mb": 386.2314453125
+}
+
+=== tam W=20 ===
+{
+  "module": "tam",
+  "window": 20,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.01704074300825596,
+  "time_median_s": 0.017739513888955116,
+  "time_min_s": 0.012790348380804062,
+  "time_max_s": 0.017929930239915848,
+  "peak_mem_mb": 873.1318359375
+}
+
+=== tam W=40 ===
+{
+  "module": "tam",
+  "window": 40,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.032235099226236345,
+  "time_median_s": 0.03223436884582043,
+  "time_min_s": 0.03214908950030804,
+  "time_max_s": 0.032325880602002144,
+  "peak_mem_mb": 2214.46875
+}
+
+=== tam W=80 ===
+{
+  "module": "tam",
+  "window": 80,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.09888095099478961,
+  "time_median_s": 0.09888610057532787,
+  "time_min_s": 0.09874174185097218,
+  "time_max_s": 0.09900305978953838,
+  "peak_mem_mb": 6366.5087890625
+}
+
+=== tam W=160 ===
+{
+  "module": "tam",
+  "window": 160,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.3398598896339536,
+  "time_median_s": 0.3398472648113966,
+  "time_min_s": 0.33946301974356174,
+  "time_max_s": 0.34019152633845806,
+  "peak_mem_mb": 21699.849609375
+}
+
+=== tam W=320 ===
+{
+  "module": "tam",
+  "window": 320,
+  "status": "oom",
+  "error": "CUDA out of memory. Tried to allocate 6.10 GiB (GPU 0; 44.39 GiB total capacity; 37.86 GiB already allocated; 4.94 GiB free; 38.95 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+  "traceback": "Traceback (most recent call last):\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 69, in run_worker\n    r = measure_one(a.module, a.window, a.num_services, a.batch_size,\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 46, in measure_one\n    run_step()\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 41, in run_step\n    out = module(xn, xt, xl)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/src/model_util.py\", line 127, in forward\n    att_tn = torch.matmul(att_t.permute(0, 2, 3, 4, 1), self.trace2pod.float()).permute(0, 4, 1, 2, 3)\ntorch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 6.10 GiB (GPU 0; 44.39 GiB total capacity; 37.86 GiB already allocated; 4.94 GiB free; 38.95 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+}
+
+=== tam W=640 ===
+{
+  "module": "tam",
+  "window": 640,
+  "status": "oom",
+  "error": "CUDA out of memory. Tried to allocate 24.41 GiB (GPU 0; 44.39 GiB total capacity; 34.51 GiB already allocated; 2.64 GiB free; 41.25 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+  "traceback": "Traceback (most recent call last):\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 69, in run_worker\n    r = measure_one(a.module, a.window, a.num_services, a.batch_size,\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 46, in measure_one\n    run_step()\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 41, in run_step\n    out = module(xn, xt, xl)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/src/model_util.py\", line 119, in forward\n    att_t = self.attention_trace(x_trace, x_trace, x_trace, average_attn_weights=False)[1]\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/activation.py\", line 1205, in forward\n    attn_output, attn_output_weights = F.multi_head_attention_forward(\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/functional.py\", line 5338, in multi_head_attention_forward\n    attn_output_weights = torch.bmm(q_scaled, k.transpose(-2, -1))\ntorch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 24.41 GiB (GPU 0; 44.39 GiB total capacity; 34.51 GiB already allocated; 2.64 GiB free; 41.25 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+}
+
+=== tam W=1280 ===
+{
+  "module": "tam",
+  "window": 1280,
+  "status": "oom",
+  "error": "CUDA out of memory. Tried to allocate 48.83 GiB (GPU 0; 44.39 GiB total capacity; 8.02 GiB already allocated; 34.63 GiB free; 9.26 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+  "traceback": "Traceback (most recent call last):\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 69, in run_worker\n    r = measure_one(a.module, a.window, a.num_services, a.batch_size,\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 46, in measure_one\n    run_step()\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 41, in run_step\n    out = module(xn, xt, xl)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/src/model_util.py\", line 118, in forward\n    att_n = self.attention_node(x_node, x_node, x_node, average_attn_weights=False)[1]\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/activation.py\", line 1205, in forward\n    attn_output, attn_output_weights = F.multi_head_attention_forward(\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/functional.py\", line 5338, in multi_head_attention_forward\n    attn_output_weights = torch.bmm(q_scaled, k.transpose(-2, -1))\ntorch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 48.83 GiB (GPU 0; 44.39 GiB total capacity; 8.02 GiB already allocated; 34.63 GiB free; 9.26 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+}
+
+=== mamba W=10 ===
+{
+  "module": "mamba",
+  "window": 10,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.025136845521628856,
+  "time_median_s": 0.025100592523813248,
+  "time_min_s": 0.02492559514939785,
+  "time_max_s": 0.02553655207157135,
+  "peak_mem_mb": 525.3125
+}
+
+=== mamba W=20 ===
+{
+  "module": "mamba",
+  "window": 20,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.027080681957304478,
+  "time_median_s": 0.027071550488471985,
+  "time_min_s": 0.026954546570777893,
+  "time_max_s": 0.027251631021499634,
+  "peak_mem_mb": 903.51708984375
+}
+
+=== mamba W=40 ===
+{
+  "module": "mamba",
+  "window": 40,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.034069536365568635,
+  "time_median_s": 0.03366146236658096,
+  "time_min_s": 0.03344096802175045,
+  "time_max_s": 0.04595481418073177,
+  "peak_mem_mb": 1650.79541015625
+}
+
+=== mamba W=80 ===
+{
+  "module": "mamba",
+  "window": 80,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.050752002485096454,
+  "time_median_s": 0.05071370676159859,
+  "time_min_s": 0.05049802176654339,
+  "time_max_s": 0.0512882936745882,
+  "peak_mem_mb": 3077.77783203125
+}
+
+=== mamba W=160 ===
+{
+  "module": "mamba",
+  "window": 160,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.1303297108784318,
+  "time_median_s": 0.13035034760832787,
+  "time_min_s": 0.12969829328358173,
+  "time_max_s": 0.1308872029185295,
+  "peak_mem_mb": 5989.43310546875
+}
+
+=== mamba W=320 ===
+{
+  "module": "mamba",
+  "window": 320,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.34486513879150155,
+  "time_median_s": 0.3448286782950163,
+  "time_min_s": 0.34435891173779964,
+  "time_max_s": 0.3457472715526819,
+  "peak_mem_mb": 11833.55810546875
+}
+
+=== mamba W=640 ===
+{
+  "module": "mamba",
+  "window": 640,
+  "status": "ok",
+  "num_services": 40,
+  "num_edges": 80,
+  "batch_size": 50,
+  "measure_iters": 50,
+  "time_mean_s": 0.7414825730025768,
+  "time_median_s": 0.7414799239486456,
+  "time_min_s": 0.7404900323599577,
+  "time_max_s": 0.7426142059266567,
+  "peak_mem_mb": 23520.93310546875
+}
+
+=== mamba W=1280 ===
+{
+  "module": "mamba",
+  "window": 1280,
+  "status": "oom",
+  "error": "CUDA out of memory. Tried to allocate 1.22 GiB (GPU 0; 44.39 GiB total capacity; 43.32 GiB already allocated; 557.31 MiB free; 43.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF",
+  "traceback": "Traceback (most recent call last):\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 69, in run_worker\n    r = measure_one(a.module, a.window, a.num_services, a.batch_size,\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 46, in measure_one\n    run_step()\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/profile_temporal.py\", line 41, in run_step\n    out = module(xn, xt, xl)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/src/MESTGAD_util.py\", line 642, in forward\n    mixed = self.mix_node_log(x_node_log) + x_node_log    # residual\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/container.py\", line 217, in forward\n    input = module(input)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/module.py\", line 1501, in _call_impl\n    return forward_call(*args, **kwargs)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/modules/dropout.py\", line 59, in forward\n    return F.dropout(input, self.p, self.training, self.inplace)\n  File \"/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/nn/functional.py\", line 1252, in dropout\n    return _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)\ntorch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 1.22 GiB (GPU 0; 44.39 GiB total capacity; 43.32 GiB already allocated; 557.31 MiB free; 43.35 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF\n"
+}
+
+Wrote 16 results to results/profile/temporal_complexity.json
+Finished: Sun Apr 19 09:17:37 CDT 2026

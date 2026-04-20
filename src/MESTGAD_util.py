@@ -322,11 +322,15 @@ class MambaBlock(nn.Module):
         self.d_conv = d_conv
         self.expand = expand
  
+        # use_fast_path=False: the fast path calls causal_conv1d_cuda directly with a
+        # 7-arg signature that the installed causal_conv1d 1.1.3 .so does not support.
+        # The slow path uses the 5-arg Python wrapper which matches the installed .so.
         self.mamba = Mamba(
             d_model=d_model,
             d_state=d_state,
             d_conv=d_conv,
             expand=expand,
+            use_fast_path=False,
         )
  
     def forward(self, x):

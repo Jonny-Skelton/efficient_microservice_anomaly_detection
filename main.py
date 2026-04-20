@@ -56,6 +56,7 @@ if __name__ == '__main__':
 
     # Evaluating
     logging.info('calculate scores...')
+    eval_infos = {}
     with open('./result.log', 'a+') as file:
         file.writelines(f"\n {args['main_model']}-{args['hash_id']} --weight_decay:{args['weight_decay']}   --learning_change:{args['learning_change']} \n")
         for statue in ['loss', 'f1']:
@@ -63,5 +64,32 @@ if __name__ == '__main__':
             trainer.load_model(args['model_path'], name=statue)
             info = trainer.evaluate(test_dl, isFinall=True)
             file.writelines(statue + '   ' + info + '\n')
+            eval_infos[statue] = info
     logging.info("^^^^^^ Current Model: ----" + args['main_model'] + "-" * 4 + args['hash_id'] + " ^^^^^")
+
+    try:
+        import json as _json
+        import re as _re
+        def _parse_eval_info(s):
+            m = _re.search(
+                r'pr:([\d.]+)\s+rc:([\d.]+)\s+auc:([\d.]+)\s+ap:([\d.]+)'
+                r'\s+f1:\s*([\d.]+)\s+pred_right:\s*(\d+)\s+pred_wrong:\s*(\d+)'
+                r'\s+actu_right:\s*(\d+)\s+actu_wrong:\s*(\d+)', s)
+            if not m:
+                return None
+            g = m.groups()
+            return {'pr': float(g[0]), 'rc': float(g[1]), 'auc': float(g[2]),
+                    'ap': float(g[3]), 'f1': float(g[4]),
+                    'pred_right': int(g[5]), 'pred_wrong': int(g[6]),
+                    'actu_right': int(g[7]), 'actu_wrong': int(g[8])}
+        metrics = {
+            'hash_id': args['hash_id'],
+            'loss_eval': _parse_eval_info(eval_infos.get('loss', '')),
+            'f1_eval':   _parse_eval_info(eval_infos.get('f1', '')),
+        }
+        metrics_path = os.path.join(args['result_dir'], 'metrics.json')
+        with open(metrics_path, 'w') as _mf:
+            _json.dump(metrics, _mf, indent=2)
+    except Exception as _e:
+        logging.warning(f"metrics.json write failed: {_e}")
 
