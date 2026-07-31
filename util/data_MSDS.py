@@ -21,7 +21,9 @@ class Process:
 
         self.window = kwargs['window']
         self.step = kwargs['step']
-        self.dataset_path = kwargs['dataset_path']
+        # Include window size in the cache path so different W values don't
+        # share a stale cache that was created at a different window size.
+        self.dataset_path = os.path.join(kwargs['dataset_path'], f"W{self.window}")
         self.rawdata_path = kwargs["data_path"]
 
         self.log_len = kwargs['log_len']

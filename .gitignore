@@ -2,3 +2,19 @@ data/MSDS/*
 data/MSDS-save/*
 data/MSDS-pre/*
 *.sbatch
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS
+.DS_Store

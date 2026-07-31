@@ -19,18 +19,25 @@ def calc_index(predict, actual):
     if actual.dim() != 2:
         actual = actual.reshape(-1, actual.shape[-1])
 
-    ap = average_precision_score(actual, predict, average='macro').tolist()
-    auc = roc_auc_score(actual, predict, average='macro').tolist()
+    # Convert to numpy explicitly — mestgad-mamba env's PyTorch lacks CXX11 ABI
+    # so tensor.numpy() is unavailable; sklearn's implicit conversion would fail.
+    predict_np = predict.detach().cpu().numpy()
+    actual_np = actual.detach().cpu().numpy()
+
+    ap = average_precision_score(actual_np, predict_np, average='macro').tolist()
+    auc = roc_auc_score(actual_np, predict_np, average='macro').tolist()
 
     if predict.shape[-1] == 2 and actual.shape[-1] == 2:
         actual, predict = torch.argmax(actual, dim=-1), torch.argmax(predict, dim=-1)
+        actual_np = actual.detach().cpu().numpy()
+        predict_np = predict.detach().cpu().numpy()
 
-    ps = precision_score(actual, predict, average="binary").tolist()
-    rs = recall_score(actual, predict, average="binary").tolist()
-    effection = f1_score(actual, predict, average="binary", zero_division=1).tolist()
+    ps = precision_score(actual_np, predict_np, average="binary").tolist()
+    rs = recall_score(actual_np, predict_np, average="binary").tolist()
+    effection = f1_score(actual_np, predict_np, average="binary", zero_division=1).tolist()
 
-    pred = np.bincount(predict)
-    actu = np.bincount(actual)
+    pred = np.bincount(predict_np)
+    actu = np.bincount(actual_np)
 
     if pred.shape[0] == 1:
         information = f'pr:{ps:.4f}  rc:{rs:.4f}  auc:{auc:.4f} ap:{ap:.4f} f1: {effection:.4f} pred_right: {pred[0]} pred_wrong: 0  actu_right: {actu[0]} actu_wrong: {actu[1]}'

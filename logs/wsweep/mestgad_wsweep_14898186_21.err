@@ -1,0 +1,28 @@
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.2.6 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/main.py", line 16, in <module>
+    util.seed_everything(args['random_seed'])
+  File "/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/util/util.py", line 93, in seed_everything
+    torch.manual_seed(seed)
+  File "/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/torch/random.py", line 46, in manual_seed
+    return default_generator.manual_seed(seed)
+2026-04-20 09:28:39,691 P2378782 INFO ---- Model: ----mestgad-fbe09256----train : True----evaluate : False
+2026-04-20 09:28:39,692 P2378782 INFO LOADing data ...
+Traceback (most recent call last):
+  File "/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/main.py", line 33, in <module>
+    processed = data_loads.Process(**args)
+  File "/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/util/data_MSDS.py", line 39, in __init__
+    self.load_raw()
+  File "/lustre/work/helab/jonnyskel/efficient_microservice_anomaly_detection/util/data_MSDS.py", line 68, in load_raw
+    metirc = metirc.append([{'now':stamp}])
+  File "/home/helab/jonnyskel/.conda/envs/mestgad-mamba/lib/python3.10/site-packages/pandas/core/generic.py", line 6321, in __getattr__
+    return object.__getattribute__(self, name)
+AttributeError: 'DataFrame' object has no attribute 'append'. Did you mean: '_append'?
